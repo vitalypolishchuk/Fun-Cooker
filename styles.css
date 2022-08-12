@@ -8,6 +8,7 @@ VARIABLES
   --background-main: rgba(255, 243, 182, 0.4);
   --background-main-dark: rgba(236, 225, 174, 0.4);
   --icons-clr: rgb(255, 174, 98);
+  --dark-shadow: 0px 0px 70px rgba(0, 0, 0, 0.05);
 }
 /* ======================== 
 GLOBAL VARIABLES
@@ -162,6 +163,10 @@ NAVIGATION
   border-radius: 2rem;
   padding: 1rem 1.5rem;
   border: none;
+  transition: var(--transition);
+}
+.search-input:hover {
+  box-shadow: var(--dark-shadow);
 }
 .search-btn {
   background: none;
@@ -172,6 +177,10 @@ NAVIGATION
   margin-left: 1rem;
   color: white;
   cursor: pointer;
+  transition: var(--transition);
+}
+.search-btn:hover {
+  transform: scale(1.03);
 }
 .search-text {
   display: none;
