@@ -283,7 +283,11 @@ PANEL OF RECIPES
   top: 0;
   left: 0%; */
 
+  /* overflow-y: scroll; */
+
   min-width: 350px;
+  height: 0;
+  transition: var(--transition);
 }
 .recipe-container {
   height: 70px;
