@@ -10,33 +10,152 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="outer-container">
-      <div class="app-container">
-        <!-- NAVIGATION -->
-        <section class="nav">
-          <div class="nav-container">
-            <div class="nav-logo-container">
-              <span class="logo icons"><i class="fa-solid fa-utensils"></i></span>
-              <span class="logo-text">FunCooker</span>
+    <div class="app-container">
+      <!-- NAVIGATION -->
+      <section class="nav">
+        <div class="nav-container">
+          <div class="nav-logo-container">
+            <span class="logo icons"><i class="fa-solid fa-utensils"></i></span>
+            <span class="logo-text">FunCooker</span>
+          </div>
+          <div class="input-container">
+            <input class="search-input" size="10" type="text" placeholder="Recipe" />
+            <button class="btn search-btn">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span class="search-text">Search</span>
+            </button>
+          </div>
+          <div class="add-recipe-container">
+            <i class="fa-solid fa-circle-plus add-icon icons-small"></i>
+            <h6 class="add-recipe-text">ADD RECIPE</h6>
+          </div>
+          <div class="bookmarks-recipe-container">
+            <i class="fa-solid fa-bookmark bookmark-icon icons-small"></i>
+            <h6 class="bookmark-recipe-text">BOOKMARKS</h6>
+          </div>
+        </div>
+      </section>
+
+      <!-- RECIPES AND RECIPE -->
+      <section class="main-section">
+        <!-- PANEL OF recipes -->
+        <section class="panel-recipes">
+          <div class="recipe-container">
+            <div class="recipe-container-lift">
+              <span class="recipe-img-container"><img class="recipe-img" src="./img/chicken_pizza.jpg" alt="" /></span>
+              <div class="recipe-text-container">
+                <h6 class="recipe-name">CAULIFLOWER PIZZA CRUSH (WITH BBQ CHICKEN PIZZA)</h6>
+                <p class="recipe-place">CLOSET COOKING</p>
+              </div>
             </div>
-            <div class="input-container">
-              <input class="search-input" size="10" type="text" placeholder="Recipe" />
-              <button class="search-btn">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <span class="search-text">Search</span>
-              </button>
+          </div>
+
+          <div class="recipe-container">
+            <div class="recipe-container-lift">
+              <span class="recipe-img-container"><img class="recipe-img" src="./img/pizza-dip.jpg" alt="" /></span>
+              <div class="recipe-text-container">
+                <h6 class="recipe-name">PIZZA DIP</h6>
+                <p class="recipe-place">CLOSET COOKING</p>
+              </div>
             </div>
-            <div class="add-recipe-container">
-              <i class="fa-solid fa-circle-plus add-icon"></i>
-              <h6 class="add-recipe-text">ADD RECIPE</h6>
-            </div>
-            <div class="bookmarks-recipe-container">
-              <i class="fa-solid fa-bookmark bookmark-icon"></i>
-              <h6 class="bookmark-recipe-text">BOOKMARKS</h6>
+          </div>
+
+          <div class="recipe-container">
+            <div class="recipe-container-lift">
+              <span class="recipe-img-container"><img class="recipe-img" src="./img/homemade-pizza.jpg" alt="" /></span>
+              <div class="recipe-text-container">
+                <h6 class="recipe-name">HOMEMADE PIZZA</h6>
+                <p class="recipe-place">SIMPLY RECIPES</p>
+              </div>
             </div>
           </div>
         </section>
-      </div>
+
+        <section class="selected-recipe">
+          <div class="selected-recipe-img-container">
+            <img class="selected-recipe-img" src="./img/chicken_pizza.jpg" alt="" />
+            <div class="selected-recipe-header"><h4>CAULIFLOWER PIZZA CRUSH (WITH BBQ CHICKEN PIZZA)</h4></div>
+          </div>
+          <div class="selected-recipe-options">
+            <div class="selected-recipe-options-inner">
+              <div class="time-container">
+                <span class="icons-small"><i class="fa-solid fa-clock"></i></span>
+                <span class="time-text"><span class="bold">75</span> minutes</span>
+              </div>
+              <div class="servings-container">
+                <span class="icons-small"><i class="fa-solid fa-user-group"></i></span>
+                <span class="servings-text"><span class="bold">75</span> minutes</span>
+                <span class="icons-small minus"><i class="fa-solid fa-minus"></i></span>
+                <span class="icons-small plus"><i class="fa-solid fa-plus"></i></span>
+              </div>
+              <span class="bookmark-recipe"><i class="fa-solid fa-bookmark icons-small"></i></span>
+            </div>
+          </div>
+
+          <div class="selected-recipe-ingredients">
+            <div class="selected-recipe-ingredients-inner">
+              <h5 class="section-header">RECIPE INGREDIENTS</h5>
+              <div class="recipe-columns">
+                <div class="column-1">
+                  <div class="ingredient">
+                    <span class="icons-small ingredients-icons"><i class="fa-solid fa-check"></i></span>
+                    <span class="ingredient-text">1 medium head cauliflower cut into florets</span>
+                  </div>
+                  <div class="ingredient">
+                    <span class="icons-small ingredients-icons"><i class="fa-solid fa-check"></i></span>
+                    <span class="ingredient-text">1/2 cup mozzarella shredded</span>
+                  </div>
+                  <div class="ingredient">
+                    <span class="icons-small ingredients-icons"><i class="fa-solid fa-check"></i></span>
+                    <span class="ingredient-text">Salt and pepper to taste</span>
+                  </div>
+                  <div class="ingredient">
+                    <span class="icons-small ingredients-icons"><i class="fa-solid fa-check"></i></span>
+                    <span class="ingredient-text">1/2 cup barbecue sauce</span>
+                  </div>
+                  <div class="ingredient">
+                    <span class="icons-small ingredients-icons"><i class="fa-solid fa-check"></i></span>
+                    <span class="ingredient-text">Red onion to taste thinly sliced</span>
+                  </div>
+                </div>
+                <div class="column-2">
+                  <div class="ingredient">
+                    <span class="icons-small ingredients-icons"><i class="fa-solid fa-check"></i></span>
+                    <span class="ingredient-text">1 egg</span>
+                  </div>
+                  <div class="ingredient">
+                    <span class="icons-small ingredients-icons"><i class="fa-solid fa-check"></i></span>
+                    <span class="ingredient-text">1 tsp oregano or italian seasoning blend</span>
+                  </div>
+                  <div class="ingredient">
+                    <span class="icons-small ingredients-icons"><i class="fa-solid fa-check"></i></span>
+                    <span class="ingredient-text">1 cup chicken cooked and shredded</span>
+                  </div>
+                  <div class="ingredient">
+                    <span class="icons-small ingredients-icons"><i class="fa-solid fa-check"></i></span>
+                    <span class="ingredient-text">3/4 cup mozzarella shredded</span>
+                  </div>
+                  <div class="ingredient">
+                    <span class="icons-small ingredients-icons"><i class="fa-solid fa-check"></i></span>
+                    <span class="ingredient-text">Fresh cilantro to taste</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="selected-recipe-directions">
+            <div class="selected-recipe-directions-inner">
+              <h5 class="section-header">HOW TO COOK IT</h5>
+              <p class="recipe-designer">
+                This recipe was carefully designed and tested by <span class="bold">Closet Cooking</span>. Please check out directions at their
+                website.
+              </p>
+              <button class="btn directions-btn">Directions →</button>
+            </div>
+          </div>
+        </section>
+      </section>
     </div>
   </body>
 </html>
