@@ -103,6 +103,19 @@ p {
     font-size: 1.15rem;
   }
 }
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(128, 128, 128, 0.5);
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgba(128, 128, 128, 0.5);
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgba(128, 128, 128, 0.5);
+}
 .bold {
   font-weight: bold;
 }
@@ -329,6 +342,24 @@ PANEL OF RECIPES
 .recipe-place {
   font-size: 0.7rem;
   color: var(--text-color-2);
+}
+.btn-container {
+  width: 90%;
+  text-align: right;
+  margin: auto;
+  padding: 0rem 0 1rem 0;
+}
+.next-page {
+  border-radius: 2rem;
+  font-size: 1rem;
+  color: white;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+}
+@media screen and (min-width: 930px) {
+  .btn-container {
+    padding: 2rem 0 0 0;
+  }
 }
 
 /* ======================== 
