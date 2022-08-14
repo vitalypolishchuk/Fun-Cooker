@@ -1,6 +1,10 @@
 ///////// DOCUMENT VARIABLES /////////
+const root = document.querySelector(":root");
 const btnContainer = document.querySelector(".btn-container");
 const nextPageBtn = document.querySelector(".next-page");
+const prevPageBtn = document.querySelector(".prev-page");
+const addRecipeInput = document.querySelectorAll(".add-recipe-input");
+const addRecipe = document.querySelector(".add-recipe");
 
 // ===== RECIPE PANEL ===== //
 const panelRecipies = document.querySelector(".panel-recipes");
@@ -9,7 +13,6 @@ const numOfRecipes = panelRecipies.children.length;
 let displayPage = 1;
 
 function setRecipesSmallScreen(displayPage = 1) {
-  console.log(numOfRecipes);
   if (!numOfRecipes) panelRecipies.style.height = 0;
   if (numOfRecipes <= 3) panelRecipies.style.height = 70 * numOfRecipes + "px";
   if (numOfRecipes > 3 && numOfRecipes <= 10) {
@@ -26,6 +29,8 @@ function setRecipesSmallScreen(displayPage = 1) {
     });
   }
   if (numOfRecipes > displayPage * 10) btnContainer.classList.remove("none");
+  if (displayPage > 1) prevPageBtn.classList.remove("none");
+  else prevPageBtn.classList.add("none");
 }
 function setRecipesBigScreen(displayPage = 1) {
   if (numOfRecipes <= 10) {
@@ -41,6 +46,8 @@ function setRecipesBigScreen(displayPage = 1) {
     });
   }
   if (numOfRecipes > displayPage * 10) btnContainer.classList.remove("none");
+  if (displayPage > 1) prevPageBtn.classList.remove("none");
+  else prevPageBtn.classList.add("none");
 }
 function setRecipePanel(displayPage) {
   if (window.innerWidth < 930) setRecipesSmallScreen(displayPage);
@@ -57,3 +64,18 @@ nextPageBtn.addEventListener("click", function () {
   displayPage++;
   setRecipePanel(displayPage);
 });
+prevPageBtn.addEventListener("click", function () {
+  displayPage--;
+  setRecipePanel(displayPage);
+});
+
+// ===== ADD RECIPE ===== //
+// addRecipe.addEventListener("click", function (e) {
+//   e.stopImmediatePropagation();
+//   if (!e.target.classList.contains("add-recipe-input")) {
+//     addRecipeInput.forEach((input) => (input.style.background = "none"));
+//     return;
+//   }
+//   e.target.style.background = getComputedStyle(root).getPropertyValue("--background-main");
+//   e.target.style.border = "1px solid" + getComputedStyle(root).getPropertyValue("--background-main-dark");
+// });
