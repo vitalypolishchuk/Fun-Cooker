@@ -5,6 +5,9 @@ const nextPageBtn = document.querySelector(".next-page");
 const prevPageBtn = document.querySelector(".prev-page");
 const addRecipeInput = document.querySelectorAll(".add-recipe-input");
 const addRecipe = document.querySelector(".add-recipe");
+const addRecipeBtn = document.querySelector(".add-recipe-container");
+const addRecipeCancelBtn = document.querySelector(".add-recipe-cancel");
+const overflow = document.querySelector(".overflow");
 
 // ===== RECIPE PANEL ===== //
 const panelRecipies = document.querySelector(".panel-recipes");
@@ -70,12 +73,13 @@ prevPageBtn.addEventListener("click", function () {
 });
 
 // ===== ADD RECIPE ===== //
-// addRecipe.addEventListener("click", function (e) {
-//   e.stopImmediatePropagation();
-//   if (!e.target.classList.contains("add-recipe-input")) {
-//     addRecipeInput.forEach((input) => (input.style.background = "none"));
-//     return;
-//   }
-//   e.target.style.background = getComputedStyle(root).getPropertyValue("--background-main");
-//   e.target.style.border = "1px solid" + getComputedStyle(root).getPropertyValue("--background-main-dark");
-// });
+addRecipeCancelBtn.addEventListener("click", function (e) {
+  e.stopImmediatePropagation();
+  addRecipe.classList.add("hide");
+  overflow.classList.add("hide");
+});
+addRecipeBtn.addEventListener("click", function (e) {
+  e.stopImmediatePropagation();
+  addRecipe.classList.remove("hide");
+  overflow.classList.remove("hide");
+});
