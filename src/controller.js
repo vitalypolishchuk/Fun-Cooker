@@ -29,19 +29,28 @@ const searchRecipes = async function (recipeName) {
 const controlRecipes = async function () {
   const id = window.location.hash.slice(1);
   if (!id) return;
-  recipeView.renderSpinner();
 
-  await model.loadRecipe(id);
-  const recipe = model.state.recipe;
-  console.log(recipe);
-  recipeView.render(model.state.recipe);
+  try {
+    recipeView.renderSpinner();
+
+    await model.loadRecipe(id);
+    const recipe = model.state.recipe;
+    console.log(recipe);
+    recipeView.render(model.state.recipe);
+  } catch (err) {
+    recipeView.renderError();
+  }
 };
 
 ///////////////////////////////
 //////////////////////////////
 /////////////////////////////
 // ===== RECIPE PANEL ===== //
-["hashchange", "load"].forEach((ev) => window.addEventListener(ev, controlRecipes)); // when the hash changes, the hash becomes the id of a recipe
+const init = function () {
+  recipeView.addHandlerRender(controlRecipes);
+  recipeView.renderMessage();
+};
+init();
 
 const numOfRecipes = panelRecipies.children.length;
 let displayPage = 1;

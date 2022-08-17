@@ -1,6 +1,8 @@
 class RecipeView {
   #parentElement = document.querySelector(".selected-recipe");
   #data;
+  #errorMessage = "We couldn't find that recipe. Please try another one!";
+  #message = "Start by searching a recipe or an ingredient!";
 
   render(data) {
     this.#data = data;
@@ -14,6 +16,8 @@ class RecipeView {
   }
 
   renderSpinner() {
+    this.#clear();
+
     const loading = document.createElement("div");
     loading.classList.add("lds-ring");
     const loadingChild = document.createElement("div");
@@ -40,9 +44,35 @@ class RecipeView {
     }
   }
 
+  renderError(message = this.#errorMessage) {
+    const markup = `
+          <div class="error">
+            <span class="error-icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+              <p>${message}</p>
+          </div>
+    `;
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
+  }
+
+  renderMessage(message = this.#message) {
+    const markup = `
+          <div class="search-msg">
+            <span class="search-msg-icon"><i class="fa-solid fa-face-smile"></i></span>
+            <p>${message}</p>
+          </div>
+    `;
+    this.#clear();
+    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
+  }
+
+  addHandlerRender(handler) {
+    ["hashchange", "load"].forEach((ev) => window.addEventListener(ev, handler)); // when the hash changes, the hash becomes the id of a recipe
+  }
+
   #generateMarkup() {
     return `
-            <div class="selected-recipe-img-container">
+          <div class="selected-recipe-img-container">
             <img class="selected-recipe-img" src="${this.#data.imageUrl}" alt="" />
             <div class="selected-recipe-header"><h4>${this.#data.title}</h4></div>
           </div>
