@@ -1,5 +1,7 @@
 import * as model from "./model.js";
 import recipeView from "./views/recipeView.js";
+import compact from "lodash-es";
+console.log(compact);
 
 ///////// DOCUMENT VARIABLES /////////
 const root = document.querySelector(":root");
