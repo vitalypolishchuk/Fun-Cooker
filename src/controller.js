@@ -3,7 +3,7 @@ import recipeView from "./views/recipeView.js";
 import compact from "lodash-es";
 console.log(compact);
 
-console.log("H");
+console.log("Y");
 
 ///////// DOCUMENT VARIABLES /////////
 const root = document.querySelector(":root");
