@@ -370,6 +370,10 @@ PANEL OF RECIPES
 /* ======================== 
 SELECTED RECIPE
 ======================== */
+.selected-recipe {
+  position: relative;
+  min-height: 300px;
+}
 .selected-recipe-img-container {
   height: 200px;
   background: rgb(236, 225, 174);
@@ -436,7 +440,6 @@ SELECTED RECIPE
   max-width: 600px;
   column-gap: 1rem;
   margin: auto;
-  outline: 2px solid red;
 }
 .ingredient-text {
   font-size: 0.8rem;
@@ -629,4 +632,67 @@ REMOVE ELEMENTS
 .hide {
   opacity: 0;
   visibility: hidden;
+}
+/* ======================== 
+LOADING SPINNER
+======================== */
+.lds-ring {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+}
+.lds-ring-inner {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: var(--text-color-1) transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@media screen and (min-width: 930px) {
+  .lds-ring-big {
+    width: 250px;
+    height: 250px;
+  }
+  .lds-ring-inner-big {
+    width: 200px;
+    height: 200px;
+  }
+}
+.time-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.servings-container {
+  display: flex;
+  align-items: center;
+}
+.servings-icon {
+  padding-right: 0.5rem;
 }

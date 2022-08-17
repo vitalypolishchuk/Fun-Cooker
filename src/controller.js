@@ -1,3 +1,8 @@
+import * as model from "./model.js";
+import recipeView from "./views/recipeView.js";
+
+import "core-js/stable";
+
 ///////// DOCUMENT VARIABLES /////////
 const root = document.querySelector(":root");
 const panelRecipies = document.querySelector(".panel-recipes");
@@ -23,91 +28,22 @@ const searchRecipes = async function (recipeName) {
 };
 // searchRecipes("pizza");
 
-const loadRecipe = async function (id) {
-  try {
-    const response = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${id}`);
-    let data = await response.json();
-    if (!response.ok) throw new Error(`${data.message} Status: ${response.status}`);
-    let recipe = data.data.recipe;
-    Object.assign(recipe, { cookingTime: recipe.cooking_time });
-    Object.assign(recipe, { sourceUrl: recipe.source_url });
-    Object.assign(recipe, { imageUrl: recipe.image_url });
-    delete recipe.cooking_time;
-    delete recipe.source_url;
-    delete recipe.image_url;
-    console.log(recipe);
-    renderRecipe(recipe);
-  } catch (err) {
-    alert(err);
-  }
-};
-loadRecipe("5ed6604591c37cdc054bc886");
+const controlRecipes = async function () {
+  const id = window.location.hash.slice(1);
+  if (!id) return;
+  recipeView.renderSpinner();
 
-const renderRecipe = function (recipe) {
-  html = `
-            <div class="selected-recipe-img-container">
-            <img class="selected-recipe-img" src="${recipe.imageUrl}" alt="" />
-            <div class="selected-recipe-header"><h4>${recipe.title}</h4></div>
-          </div>
-          <div class="selected-recipe-options">
-            <div class="selected-recipe-options-inner">
-              <div class="time-container">
-                <span class="icons-small"><i class="fa-solid fa-clock"></i></span>
-                <span class="time-text"><span class="bold">${recipe.cookingTime}</span> minutes</span>
-              </div>
-              <div class="servings-container">
-                <span class="icons-small"><i class="fa-solid fa-user-group"></i></span>
-                <span class="servings-text"><span class="bold">${recipe.servings}</span> servings</span>
-                <span class="icons-small minus"><i class="fa-solid fa-minus"></i></span>
-                <span class="icons-small plus"><i class="fa-solid fa-plus"></i></span>
-              </div>
-              <span class="bookmark-recipe"><i class="fa-solid fa-bookmark icons-small"></i></span>
-            </div>
-          </div>
-
-          <div class="selected-recipe-ingredients">
-            <div class="selected-recipe-ingredients-inner">
-              <h5 class="section-header">RECIPE INGREDIENTS</h5>
-              <div class="recipe-columns">
-
-
-              ${recipe.ingredients
-                .map((ingredient) => {
-                  return `
-                <div class="ingredient">
-                  <span class="icons-small ingredients-icons"><i class="fa-solid fa-check"></i></span>
-                  <span class="ingredient-text">${(ingredient.quantity = ingredient.quantity ?? "")} ${ingredient.unit} ${
-                    ingredient.description
-                  }</span>
-                </div>
-                `;
-                })
-                .join("")}
-              </div>
-            </div>
-          </div>
-
-          <div class="selected-recipe-directions">
-            <div class="selected-recipe-directions-inner">
-              <h5 class="section-header">HOW TO COOK IT</h5>
-              <p class="recipe-designer">
-                This recipe was carefully designed and tested by <span class="bold">${recipe.publisher}</span>. Please check out directions at their
-                website.
-              </p>
-              <a href="${recipe.sourceUrl}">
-                <button class="btn directions-btn">Directions →</button>
-              </a>
-            </div>
-          </div>
-  `;
-  selectedRecipeContainer.innerHTML = "";
-  selectedRecipeContainer.insertAdjacentHTML("afterbegin", html);
+  await model.loadRecipe(id);
+  const recipe = model.state.recipe;
+  console.log(recipe);
+  recipeView.render(model.state.recipe);
 };
 
 ///////////////////////////////
 //////////////////////////////
 /////////////////////////////
 // ===== RECIPE PANEL ===== //
+["hashchange", "load"].forEach((ev) => window.addEventListener(ev, controlRecipes)); // when the hash changes, the hash becomes the id of a recipe
 
 const numOfRecipes = panelRecipies.children.length;
 let displayPage = 1;

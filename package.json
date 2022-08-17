@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/vitalypolishchuk/Fun-Cooker#readme",
   "dependencies": {
+    "core-js": "^3.24.1",
+    "fractional": "^1.0.0",
     "parcel": "^2.7.0"
   }
 }
