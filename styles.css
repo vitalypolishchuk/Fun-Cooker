@@ -155,6 +155,7 @@ p {
     max-width: 1200px;
     margin: 5rem auto;
     margin-top: 5rem;
+    border-radius: 1rem;
   }
 }
 /* ======================== 
@@ -284,7 +285,6 @@ NAVIGATION
 MAIN SECTION
 ======================== */
 .main-section {
-  outline: 2px solid blue;
   position: relative;
   min-width: 350px;
 }
