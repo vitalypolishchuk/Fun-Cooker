@@ -1,5 +1,6 @@
 import * as model from "./model.js";
 import recipeView from "./views/recipeView.js";
+import searchView from "./views/searchView.js";
 
 ///////// DOCUMENT VARIABLES /////////
 const root = document.querySelector(":root");
@@ -14,18 +15,6 @@ const addRecipeBtn = document.querySelector(".add-recipe-container");
 const addRecipeCancelBtn = document.querySelector(".add-recipe-cancel");
 const overflow = document.querySelector(".overflow");
 
-const searchRecipes = async function (recipeName) {
-  try {
-    const response = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes?search=${recipeName}`);
-    const data = await response.json();
-    if (!response.ok || !data.data.recipes.length) throw new Error("Could not find the recipe!");
-    return data.data.recipes;
-  } catch (err) {
-    alert(err);
-  }
-};
-// searchRecipes("pizza");
-
 const controlRecipes = async function () {
   const id = window.location.hash.slice(1);
   if (!id) return;
@@ -35,10 +24,20 @@ const controlRecipes = async function () {
 
     await model.loadRecipe(id);
     const recipe = model.state.recipe;
-    console.log(recipe);
     recipeView.render(model.state.recipe);
   } catch (err) {
     recipeView.renderError();
+  }
+};
+const controlSearchResults = async function () {
+  try {
+    const recipeName = searchView.getSearchInput();
+    if (!recipeName) return;
+
+    await model.loadSearchResults(recipeName);
+    console.log(model.state.search);
+  } catch (err) {
+    alert(err);
   }
 };
 
@@ -49,6 +48,7 @@ const controlRecipes = async function () {
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
   recipeView.renderMessage();
+  searchView.addHandlerSearch(controlSearchResults);
 };
 init();
 

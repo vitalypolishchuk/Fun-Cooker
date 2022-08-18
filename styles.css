@@ -21,7 +21,7 @@ GLOBAL VARIABLES
   box-sizing: border-box;
 }
 body {
-  font-family: sans-serif;
+  font-family: cursive;
 }
 img {
   width: 100%;
@@ -56,6 +56,9 @@ h6 {
 }
 p {
   font-size: 1rem;
+}
+button {
+  font-family: cursive;
 }
 @media screen and (min-width: 930px) {
   h1 {
@@ -179,11 +182,29 @@ NAVIGATION
   align-items: center;
 }
 .logo {
+  padding: 0.3rem 0.9rem;
   font-size: 2rem;
+}
+.logo-text-container {
+  display: flex;
+  flex-direction: column;
 }
 .logo-text {
   font-size: 1.2rem;
   font-family: "Pacifico", cursive;
+}
+.logo-text-2 {
+  font-size: 0.8rem;
+  color: var(--text-color-2);
+  display: none;
+}
+@media screen and (min-width: 930px) {
+  .logo-text-2 {
+    display: inline-block;
+  }
+  .logo-text-container {
+    padding-left: 1rem;
+  }
 }
 .input-container {
   position: relative;
@@ -197,6 +218,9 @@ NAVIGATION
   padding: 1rem 1.5rem;
   border: none;
   transition: var(--transition);
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-family: cursive;
 }
 .search-input:hover {
   box-shadow: var(--dark-shadow);
