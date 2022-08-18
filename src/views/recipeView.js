@@ -1,90 +1,27 @@
-class RecipeView {
-  #parentElement = document.querySelector(".selected-recipe");
-  #data;
-  #errorMessage = "We couldn't find that recipe. Please try another one!";
-  #message = "Start by searching a recipe or an ingredient!";
+import View from "./View";
 
-  render(data) {
-    this.#data = data;
-    const markup = this.#generateMarkup();
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
-  }
-
-  #clear() {
-    this.#parentElement.innerHTML = "";
-  }
-
-  renderSpinner() {
-    this.#clear();
-
-    const loading = document.createElement("div");
-    loading.classList.add("lds-ring");
-    const loadingChild = document.createElement("div");
-    loadingChild.classList.add("lds-ring-inner");
-    for (let i = 0; i < 3; i++) {
-      loading.appendChild(loadingChild);
-    }
-    this.#parentElement.appendChild(loading);
-
-    if (this.#parentElement === document.querySelector(".selected-recipe") && window.innerWidth >= 930) {
-      loading.style.width = 250 + "px";
-      loading.style.height = 250 + "px";
-      [...loading.children].forEach((child) => {
-        child.style.width = 200 + "px";
-        child.style.height = 200 + "px";
-      });
-    } else {
-      loading.style.width = 80 + "px";
-      loading.style.height = 80 + "px";
-      [...loading.children].forEach((child) => {
-        child.style.width = 64 + "px";
-        child.style.height = 64 + "px";
-      });
-    }
-  }
-
-  renderError(message = this.#errorMessage) {
-    const markup = `
-          <div class="error">
-            <span class="error-icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
-              <p>${message}</p>
-          </div>
-    `;
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
-  }
-
-  renderMessage(message = this.#message) {
-    const markup = `
-          <div class="search-msg">
-            <span class="search-msg-icon"><i class="fa-solid fa-face-smile"></i></span>
-            <p>${message}</p>
-          </div>
-    `;
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
-  }
+class RecipeView extends View {
+  _parentElement = document.querySelector(".selected-recipe");
 
   addHandlerRender(handler) {
     ["hashchange", "load"].forEach((ev) => window.addEventListener(ev, handler)); // when the hash changes, the hash becomes the id of a recipe
   }
 
-  #generateMarkup() {
+  _generateMarkup() {
     return `
           <div class="selected-recipe-img-container">
-            <img class="selected-recipe-img" src="${this.#data.imageUrl}" alt="" />
-            <div class="selected-recipe-header"><h4>${this.#data.title}</h4></div>
+            <img class="selected-recipe-img" src="${this._data.imageUrl}" alt="" />
+            <div class="selected-recipe-header"><h4>${this._data.title}</h4></div>
           </div>
           <div class="selected-recipe-options">
             <div class="selected-recipe-options-inner">
               <div class="time-container">
                 <span class="icons-small"><i class="fa-solid fa-clock"></i></span>
-                <span class="time-text"><span class="bold">${this.#data.cookingTime}</span> minutes</span>
+                <span class="time-text"><span class="bold">${this._data.cookingTime}</span> minutes</span>
               </div>
               <div class="servings-container">
                 <span class="icons-small servings-icon"><i class="fa-solid fa-user-group"></i></span>
-                <span class="servings-text"><span class="bold">${this.#data.servings}</span> servings</span>
+                <span class="servings-text"><span class="bold">${this._data.servings}</span> servings</span>
                 <span class="icons-small minus"><i class="fa-solid fa-minus"></i></span>
                 <span class="icons-small plus"><i class="fa-solid fa-plus"></i></span>
               </div>
@@ -98,7 +35,7 @@ class RecipeView {
               <div class="recipe-columns">
 
 
-              ${this.#data.ingredients
+              ${this._data.ingredients
                 .map((ingredient) => {
                   return `
                 <div class="ingredient">
@@ -119,11 +56,11 @@ class RecipeView {
               <h5 class="section-header">HOW TO COOK IT</h5>
               <p class="recipe-designer">
                 This recipe was carefully designed and tested by <span class="bold">${
-                  this.#data.publisher
+                  this._data.publisher
                 }</span>. Please check out directions at their
                 website.
               </p>
-              <a href="${this.#data.sourceUrl}">
+              <a href="${this._data.sourceUrl}">
                 <button class="btn directions-btn">Directions →</button>
               </a>
             </div>

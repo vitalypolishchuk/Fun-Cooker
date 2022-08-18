@@ -199,6 +199,9 @@ NAVIGATION
   display: none;
 }
 @media screen and (min-width: 930px) {
+  .nav-container {
+    width: 90%;
+  }
   .logo-text-2 {
     display: inline-block;
   }
@@ -296,13 +299,25 @@ NAVIGATION
   .bookmarks-recipe-container {
     height: 100%;
   }
+  .input-container {
+    justify-content: left;
+  }
   .search-input {
     padding: 1.3rem 3rem;
   }
   .search-btn {
     position: absolute;
-    left: 60%;
+    left: 47%;
     padding: 1.3rem 2rem;
+  }
+}
+@media screen and (min-width: 1050px) {
+  .input-container {
+    justify-content: center;
+  }
+  .search-btn {
+    position: absolute;
+    left: 60%;
   }
 }
 /* ======================== 
@@ -322,6 +337,7 @@ PANEL OF RECIPES
 
   /* overflow-y: scroll; */
 
+  position: relative;
   min-width: 350px;
   height: 0;
   transition: var(--transition);
@@ -509,7 +525,7 @@ SELECTED RECIPE
 .error,
 .search-msg {
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
   width: 90%;
   max-width: 300px;
@@ -517,6 +533,9 @@ SELECTED RECIPE
   gap: 1rem;
   align-items: center;
   transform: translate(-50%, -50%);
+}
+.error {
+  justify-content: center;
 }
 .error p {
   color: var(--text-color-2);
@@ -689,7 +708,7 @@ LOADING SPINNER
   display: inline-block;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 20%;
   transform: translate(-50%, -50%);
   width: 80px;
   height: 80px;
@@ -744,4 +763,7 @@ LOADING SPINNER
 }
 .servings-icon {
   padding-right: 0.5rem;
+}
+.new {
+  outline: 2px solid red;
 }

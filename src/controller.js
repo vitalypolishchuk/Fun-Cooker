@@ -1,8 +1,7 @@
 import * as model from "./model.js";
 import recipeView from "./views/recipeView.js";
 import searchView from "./views/searchView.js";
-
-console.log("h");
+import resultsView from "./views/resultsView.js";
 
 ///////// DOCUMENT VARIABLES /////////
 const root = document.querySelector(":root");
@@ -33,11 +32,14 @@ const controlRecipes = async function () {
 };
 const controlSearchResults = async function () {
   try {
-    const recipeName = searchView.getSearchInput();
+    resultsView.renderSpinner();
+
+    const recipeName = searchView._getSearchInput();
     if (!recipeName) return;
 
     await model.loadSearchResults(recipeName);
-    console.log(model.state.search);
+    resultsView.render(model.state.search.results);
+    searchView._clearSearchInput();
   } catch (err) {
     alert(err);
   }
@@ -54,8 +56,8 @@ const init = function () {
 };
 init();
 
-const numOfRecipes = panelRecipies.children.length;
 let displayPage = 1;
+let numOfRecipes = panelRecipies.children.length;
 
 function setRecipesSmallScreen(displayPage = 1) {
   if (!numOfRecipes) {
