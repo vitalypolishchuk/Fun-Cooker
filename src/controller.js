@@ -50,11 +50,8 @@ const controlSearchResults = async function () {
 };
 
 const controlPagination = function (goToPage) {
-  console.log(goToPage);
-  window.addEventListener("resize", function () {
-    resultsView._adjustHeight(model.state.search);
-  });
   resultsView.render(model.getSearchResultsPage(goToPage));
+  resultsView._adjustHeight(model.state.search);
   paginationView._generateButtonMarkup(model.state.search);
   paginationView.addHandlerClick(controlPagination);
 };
@@ -142,13 +139,13 @@ init();
 // });
 
 // ===== ADD RECIPE ===== //
-addRecipeCancelBtn.addEventListener("click", function (e) {
-  e.stopImmediatePropagation();
-  addRecipe.classList.add("hide");
-  overflow.classList.add("hide");
-});
-addRecipeBtn.addEventListener("click", function (e) {
-  e.stopImmediatePropagation();
-  addRecipe.classList.remove("hide");
-  overflow.classList.remove("hide");
-});
+// addRecipeCancelBtn.addEventListener("click", function (e) {
+//   e.stopImmediatePropagation();
+//   addRecipe.classList.add("hide");
+//   overflow.classList.add("hide");
+// });
+// addRecipeBtn.addEventListener("click", function (e) {
+//   e.stopImmediatePropagation();
+//   addRecipe.classList.remove("hide");
+//   overflow.classList.remove("hide");
+// });

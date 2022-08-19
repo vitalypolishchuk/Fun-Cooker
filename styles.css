@@ -326,6 +326,7 @@ MAIN SECTION
 .main-section {
   position: relative;
   min-width: 350px;
+  background: var(--background-main);
 }
 /* ======================== 
 PANEL OF RECIPES
@@ -333,7 +334,7 @@ PANEL OF RECIPES
 .panel-recipes {
   position: relative;
   min-width: 350px;
-  height: 0;
+  /* min-height: 1000px; */
   transition: var(--transition);
 }
 .recipe-container {
@@ -487,6 +488,7 @@ SELECTED RECIPE
   .main-section {
     display: grid;
     grid-template-columns: 1fr 5fr;
+    min-height: 1000px;
   }
 }
 .selected-recipe-directions {
@@ -519,7 +521,6 @@ SELECTED RECIPE
 }
 .error,
 .search-msg {
-  outline: 2px solid red;
   position: absolute;
   top: 20%;
   left: 50%;
@@ -759,7 +760,4 @@ LOADING SPINNER
 }
 .servings-icon {
   padding-right: 0.5rem;
-}
-.new {
-  outline: 2px solid red;
 }
