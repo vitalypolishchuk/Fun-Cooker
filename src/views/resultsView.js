@@ -27,14 +27,12 @@ class resultsView extends View {
   _adjustHeightSmallScreen(recipesData) {
     const numOfRecipes = recipesData.results.length;
     if (!numOfRecipes) {
-      console.log("here");
       this._parentElement.style.minHeight = 210 + "px";
     }
 
     if (numOfRecipes <= 3) this._parentElement.style.height = 70 * numOfRecipes + "px";
     if (numOfRecipes > 3) {
       this._parentElement.style.height = 70 * 3 + "px";
-      console.log(getComputedStyle(this._parentElement).getPropertyValue("min-height"));
       this._parentElement.style.overflowY = "scroll";
     }
   }
