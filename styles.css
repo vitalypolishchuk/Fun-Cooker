@@ -331,18 +331,13 @@ MAIN SECTION
 PANEL OF RECIPES
 ======================== */
 .panel-recipes {
-  /* position: absolute;
-  top: 0;
-  left: 0%; */
-
-  /* overflow-y: scroll; */
-
   position: relative;
   min-width: 350px;
   height: 0;
   transition: var(--transition);
 }
 .recipe-container {
+  overflow-y: hidden;
   height: 70px;
   position: relative;
   cursor: pointer;
@@ -524,6 +519,7 @@ SELECTED RECIPE
 }
 .error,
 .search-msg {
+  outline: 2px solid red;
   position: absolute;
   top: 20%;
   left: 50%;

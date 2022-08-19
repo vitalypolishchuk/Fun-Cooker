@@ -2,6 +2,7 @@ import * as model from "./model.js";
 import recipeView from "./views/recipeView.js";
 import searchView from "./views/searchView.js";
 import resultsView from "./views/resultsView.js";
+import paginationView from "./views/paginationView.js";
 
 ///////// DOCUMENT VARIABLES /////////
 const root = document.querySelector(":root");
@@ -38,11 +39,24 @@ const controlSearchResults = async function () {
     if (!recipeName) return;
 
     await model.loadSearchResults(recipeName);
-    resultsView.render(model.state.search.results);
+    resultsView._adjustHeight(model.state.search);
+    resultsView.render(model.getSearchResultsPage());
+    paginationView._generateButtonMarkup(model.state.search);
+    paginationView.addHandlerClick(controlPagination);
     searchView._clearSearchInput();
   } catch (err) {
     alert(err);
   }
+};
+
+const controlPagination = function (goToPage) {
+  console.log(goToPage);
+  window.addEventListener("resize", function () {
+    resultsView._adjustHeight(model.state.search);
+  });
+  resultsView.render(model.getSearchResultsPage(goToPage));
+  paginationView._generateButtonMarkup(model.state.search);
+  paginationView.addHandlerClick(controlPagination);
 };
 
 ///////////////////////////////
@@ -56,76 +70,76 @@ const init = function () {
 };
 init();
 
-let displayPage = 1;
-let numOfRecipes = panelRecipies.children.length;
+// let displayPage = 1;
+// let numOfRecipes = panelRecipies.children.length;
 
-function setRecipesSmallScreen(displayPage = 1) {
-  if (!numOfRecipes) {
-    panelRecipies.style.height = 0;
-    return;
-  }
-  if (numOfRecipes <= 3) panelRecipies.style.height = 70 * numOfRecipes + "px";
-  if (numOfRecipes > 3 && numOfRecipes <= 10) {
-    panelRecipies.style.height = 70 * 3 + "px";
-    panelRecipies.style.overflowY = "scroll";
-  }
-  if (numOfRecipes > 10) {
-    panelRecipies.style.height = 70 * 3 + "px";
-    panelRecipies.style.overflowY = "scroll";
-    [...panelRecipies.children].forEach((child, index) => {
-      if (index >= displayPage * 10 - 10 && index < displayPage * 10) {
-        child.classList.remove("none");
-      } else child.classList.add("none");
-    });
-  }
-  if (numOfRecipes > displayPage * 10) {
-    btnContainer.classList.remove("none");
-    nextPageBtn.classList.remove("none");
-  } else nextPageBtn.classList.add("none");
-  if (displayPage > 1) prevPageBtn.classList.remove("none");
-  else prevPageBtn.classList.add("none");
-}
-function setRecipesBigScreen(displayPage = 1) {
-  if (!numOfRecipes) return;
-  if (numOfRecipes <= 10) {
-    panelRecipies.style.height = 70 * numOfRecipes + "px";
-    panelRecipies.style.overflowY = "hidden";
-  }
-  if (numOfRecipes > 10) {
-    panelRecipies.style.height = 70 * 11 + "px";
-    panelRecipies.style.overflowY = "hidden";
-    [...panelRecipies.children].forEach((child, index) => {
-      if (index >= displayPage * 10 - 10 && index < displayPage * 10) {
-        child.classList.remove("none");
-      } else child.classList.add("none");
-    });
-  }
-  if (numOfRecipes > displayPage * 10) {
-    btnContainer.classList.remove("none");
-    nextPageBtn.classList.remove("none");
-  } else nextPageBtn.classList.add("none");
-  if (displayPage > 1) prevPageBtn.classList.remove("none");
-  else prevPageBtn.classList.add("none");
-}
-function setRecipePanel(displayPage) {
-  if (window.innerWidth < 930) setRecipesSmallScreen(displayPage);
-  if (window.innerWidth >= 930) setRecipesBigScreen(displayPage);
-}
-setRecipePanel();
+// function setRecipesSmallScreen(displayPage = 1) {
+//   if (!numOfRecipes) {
+//     panelRecipies.style.height = 0;
+//     return;
+//   }
+//   if (numOfRecipes <= 3) panelRecipies.style.height = 70 * numOfRecipes + "px";
+//   if (numOfRecipes > 3 && numOfRecipes <= 10) {
+//     panelRecipies.style.height = 70 * 3 + "px";
+//     panelRecipies.style.overflowY = "scroll";
+//   }
+//   if (numOfRecipes > 10) {
+//     panelRecipies.style.height = 70 * 3 + "px";
+//     panelRecipies.style.overflowY = "scroll";
+//     [...panelRecipies.children].forEach((child, index) => {
+//       if (index >= displayPage * 10 - 10 && index < displayPage * 10) {
+//         child.classList.remove("none");
+//       } else child.classList.add("none");
+//     });
+//   }
+//   if (numOfRecipes > displayPage * 10) {
+//     btnContainer.classList.remove("none");
+//     nextPageBtn.classList.remove("none");
+//   } else nextPageBtn.classList.add("none");
+//   if (displayPage > 1) prevPageBtn.classList.remove("none");
+//   else prevPageBtn.classList.add("none");
+// }
+// function setRecipesBigScreen(displayPage = 1) {
+//   if (!numOfRecipes) return;
+//   if (numOfRecipes <= 10) {
+//     panelRecipies.style.height = 70 * numOfRecipes + "px";
+//     panelRecipies.style.overflowY = "hidden";
+//   }
+//   if (numOfRecipes > 10) {
+//     panelRecipies.style.height = 70 * 11 + "px";
+//     panelRecipies.style.overflowY = "hidden";
+//     [...panelRecipies.children].forEach((child, index) => {
+//       if (index >= displayPage * 10 - 10 && index < displayPage * 10) {
+//         child.classList.remove("none");
+//       } else child.classList.add("none");
+//     });
+//   }
+//   if (numOfRecipes > displayPage * 10) {
+//     btnContainer.classList.remove("none");
+//     nextPageBtn.classList.remove("none");
+//   } else nextPageBtn.classList.add("none");
+//   if (displayPage > 1) prevPageBtn.classList.remove("none");
+//   else prevPageBtn.classList.add("none");
+// }
+// function setRecipePanel(displayPage) {
+//   if (window.innerWidth < 930) setRecipesSmallScreen(displayPage);
+//   if (window.innerWidth >= 930) setRecipesBigScreen(displayPage);
+// }
+// setRecipePanel();
 
-window.addEventListener("resize", function () {
-  // display found recipes on screen
-  setRecipePanel();
-});
+// window.addEventListener("resize", function () {
+//   // display found recipes on screen
+//   setRecipePanel();
+// });
 
-nextPageBtn.addEventListener("click", function () {
-  displayPage++;
-  setRecipePanel(displayPage);
-});
-prevPageBtn.addEventListener("click", function () {
-  displayPage--;
-  setRecipePanel(displayPage);
-});
+// nextPageBtn.addEventListener("click", function () {
+//   displayPage++;
+//   setRecipePanel(displayPage);
+// });
+// prevPageBtn.addEventListener("click", function () {
+//   displayPage--;
+//   setRecipePanel(displayPage);
+// });
 
 // ===== ADD RECIPE ===== //
 addRecipeCancelBtn.addEventListener("click", function (e) {

@@ -6,6 +6,7 @@ export const state = {
   search: {
     name: "",
     results: [],
+    page: 1,
   },
 };
 const transformData = function (object) {
@@ -32,7 +33,15 @@ export const loadSearchResults = async function (search) {
     const data = await helpers.getJSON(`${config.API_URL}?search=${search}`);
     const recipes = data.data.recipes;
     state.search.results = recipes.map((recipe) => transformData(recipe));
+    state.search.page = 1;
   } catch (err) {
     throw new Error(err);
   }
+};
+export const getSearchResultsPage = function (page = state.search.page) {
+  state.search.page = page;
+
+  const start = (page - 1) * config.NUM_RECIPES_PER_PAGE;
+  const end = page * config.NUM_RECIPES_PER_PAGE;
+  return state.search.results.slice(start, end);
 };
