@@ -54,14 +54,18 @@ const init = function () {
 };
 init();
 
+const addRecipeCancelBtn = document.querySelector(".add-recipe-cancel");
+const addRecipeBtn = document.querySelector(".add-recipe-container");
+const addRecipe = document.querySelector(".add-recipe");
+const overflow = document.querySelector(".overflow");
 // ===== ADD RECIPE ===== //
-// addRecipeCancelBtn.addEventListener("click", function (e) {
-//   e.stopImmediatePropagation();
-//   addRecipe.classList.add("hide");
-//   overflow.classList.add("hide");
-// });
-// addRecipeBtn.addEventListener("click", function (e) {
-//   e.stopImmediatePropagation();
-//   addRecipe.classList.remove("hide");
-//   overflow.classList.remove("hide");
-// });
+addRecipeCancelBtn.addEventListener("click", function (e) {
+  e.stopImmediatePropagation();
+  addRecipe.classList.add("hide");
+  overflow.classList.add("hide");
+});
+addRecipeBtn.addEventListener("click", function (e) {
+  e.stopImmediatePropagation();
+  addRecipe.classList.remove("hide");
+  overflow.classList.remove("hide");
+});
