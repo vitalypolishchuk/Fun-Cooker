@@ -45,3 +45,11 @@ export const getSearchResultsPage = function (page = state.search.page) {
   const end = page * config.NUM_RECIPES_PER_PAGE;
   return state.search.results.slice(start, end);
 };
+export const updateServings = function (newServings) {
+  state.recipe.ingredients.forEach((ing) => {
+    if (ing.quantity) {
+      ing.quantity = (newServings * ing.quantity) / state.recipe.servings;
+    }
+  });
+  state.recipe.servings = newServings;
+};

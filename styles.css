@@ -334,6 +334,7 @@ PANEL OF RECIPES
 .panel-recipes {
   position: relative;
   min-width: 350px;
+  min-height: 210px;
   /* min-height: 1000px; */
   transition: var(--transition);
 }
@@ -356,7 +357,7 @@ PANEL OF RECIPES
 }
 .recipe-container-lift:hover {
   top: -2px;
-  background: var(--background-main);
+  /* background: var(--background-main); */
 }
 .recipe-img-container {
   margin-left: 1.5rem;
@@ -760,4 +761,8 @@ LOADING SPINNER
 }
 .servings-icon {
   padding-right: 0.5rem;
+}
+
+.selected-recipe-active {
+  background: var(--background-main);
 }

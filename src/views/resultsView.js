@@ -42,9 +42,11 @@ class resultsView extends View {
   }
 
   _generateMarkupPreview(recipe) {
+    const id = window.location.hash.slice(1);
+
     return `
           <a class="new" href="#${recipe.id}">
-            <div class="recipe-container">
+            <div class="recipe-container ${recipe.id === id ? "selected-recipe-active" : ""}">
               <div class="recipe-container-lift">
                 <span class="recipe-img-container"><img class="recipe-img" src="${recipe.imageUrl}" alt="" /></span>
                 <div class="recipe-text-container">
