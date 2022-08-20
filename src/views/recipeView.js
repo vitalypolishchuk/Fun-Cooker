@@ -11,7 +11,7 @@ class RecipeView extends View {
     return `
           <div class="selected-recipe-img-container">
             <img class="selected-recipe-img" src="${this._data.imageUrl}" alt="" />
-            <div class="selected-recipe-header"><h4>${this._data.title.slice(0, 60)}</h4></div>
+            <div class="selected-recipe-header"><h4>${this._data.title.slice(0, 59)}</h4></div>
           </div>
           <div class="selected-recipe-options">
             <div class="selected-recipe-options-inner">
