@@ -60,7 +60,7 @@ p {
 button {
   font-family: cursive;
 }
-@media screen and (min-width: 930px) {
+@media screen and (min-width: 950px) {
   h1 {
     font-size: 3.5rem;
   }
@@ -143,7 +143,7 @@ button {
   color: var(--text-color-1);
   margin-bottom: 1rem;
 }
-@media screen and (min-width: 930px) {
+@media screen and (min-width: 950px) {
   body {
     overflow-y: scroll;
     top: 0;
@@ -165,6 +165,7 @@ button {
 NAVIGATION
 ======================== */
 .nav {
+  position: relative;
   /* background: var(--background-main); */
   background: var(--background-main);
   min-width: 350px;
@@ -173,11 +174,14 @@ NAVIGATION
   width: 90%;
   margin: auto;
   display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto;
+  grid-template-areas:
+    "a b"
+    "c c";
+
   justify-content: space-around;
 }
 .nav-logo-container {
+  grid-area: a;
   display: flex;
   align-items: center;
 }
@@ -198,7 +202,7 @@ NAVIGATION
   color: var(--text-color-2);
   display: none;
 }
-@media screen and (min-width: 930px) {
+@media screen and (min-width: 950px) {
   .nav-container {
     width: 90%;
   }
@@ -210,6 +214,7 @@ NAVIGATION
   }
 }
 .input-container {
+  grid-area: b;
   position: relative;
   display: flex;
   align-items: center;
@@ -242,8 +247,20 @@ NAVIGATION
 .search-text {
   display: none;
 }
+.add-and-bookmark-container {
+  grid-area: c;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+@media screen and (min-width: 950px) {
+  .add-and-bookmark-container {
+    height: 100%;
+  }
+}
 .add-recipe-container,
 .bookmarks-recipe-container {
+  position: relative;
   min-width: 50px;
   display: flex;
   align-items: center;
@@ -273,13 +290,13 @@ NAVIGATION
     padding: 1rem 3rem;
   }
 }
-@media screen and (min-width: 930px) {
+@media screen and (min-width: 950px) {
   .nav {
     height: 100px;
   }
   .nav-container {
+    grid-template-areas: "a b c d";
     grid-template-columns: auto 1fr auto auto;
-    grid-template-rows: auto;
   }
   .nav-container {
     height: 100%;
@@ -399,7 +416,7 @@ PANEL OF RECIPES
 .prev-page {
   padding: 0.5rem 1.1rem;
 }
-@media screen and (min-width: 930px) {
+@media screen and (min-width: 950px) {
   .btn-container {
     padding: 2rem 0 0 0;
   }
@@ -458,7 +475,7 @@ SELECTED RECIPE
 .bookmark-recipe {
   cursor: pointer;
 }
-@media screen and (min-width: 930px) {
+@media screen and (min-width: 950px) {
   .selected-recipe-img-container {
     height: 300px;
   }
@@ -485,7 +502,7 @@ SELECTED RECIPE
   letter-spacing: 1.5px;
 }
 
-@media screen and (min-width: 930px) {
+@media screen and (min-width: 950px) {
   .main-section {
     display: grid;
     grid-template-columns: 1fr 5fr;
@@ -740,7 +757,7 @@ LOADING SPINNER
     transform: rotate(360deg);
   }
 }
-@media screen and (min-width: 930px) {
+@media screen and (min-width: 950px) {
   .lds-ring-big {
     width: 250px;
     height: 250px;
@@ -765,4 +782,25 @@ LOADING SPINNER
 
 .selected-recipe-active {
   background: var(--background-main);
+}
+/* ======================== 
+BOOKMARKS
+======================== */
+.bookmarks-saved-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background: white;
+  transition: var(--transition);
+}
+@media screen and (min-width: 950px) {
+  .bookmarks-saved-container {
+    width: 30%;
+    position: absolute;
+    left: 100%;
+    transform: translateX(-100%);
+    border-bottom-left-radius: 1rem;
+  }
 }

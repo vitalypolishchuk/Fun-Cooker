@@ -29,7 +29,6 @@ export default class View {
         }
       }
       if (!newEl.isEqualNode(curElements[i])) {
-        console.log(newEl);
         Array.from(newEl.attributes).forEach((attr) => curElements[i].setAttribute(attr.name, attr.value));
       }
     });
@@ -47,7 +46,7 @@ export default class View {
     }
     this._parentElement.appendChild(loading);
 
-    if (this._parentElement === document.querySelector(".selected-recipe") && window.innerWidth >= 930) {
+    if (this._parentElement === document.querySelector(".selected-recipe") && window.innerWidth >= 950) {
       loading.style.width = 250 + "px";
       loading.style.height = 250 + "px";
       [...loading.children].forEach((child) => {
@@ -84,5 +83,45 @@ export default class View {
     `;
     this._clear();
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
+  }
+
+  _adjustHeight(children, bookmarks = false) {
+    if (window.innerWidth >= 950) this._adjustHeightBigScreen(children, bookmarks);
+    else this._adjustHeightSmallScreen(children);
+
+    window.addEventListener(
+      "resize",
+      function () {
+        if (window.innerWidth >= 950) this._adjustHeightBigScreen(children, bookmarks);
+        else this._adjustHeightSmallScreen(children);
+      }.bind(this)
+    );
+  }
+
+  _adjustHeightBigScreen(children, bookmarks) {
+    this._parentElement.style.overflowY = "hidden";
+    if (!bookmarks) this._parentElement.style.height = 1000 + "px";
+    else {
+      if (children.length <= 10) {
+        console.log("here");
+        this._parentElement.style.height = 70 * children.length + "px";
+      }
+      if (children.length > 10) {
+        this._parentElement.style.height = 1000 + "px";
+      }
+    }
+  }
+
+  _adjustHeightSmallScreen(children) {
+    const numOfRecipes = children.length;
+    if (!numOfRecipes) {
+      this._parentElement.style.minHeight = 210 + "px";
+    }
+
+    if (numOfRecipes <= 3) this._parentElement.style.height = 70 * numOfRecipes + "px";
+    if (numOfRecipes > 3) {
+      this._parentElement.style.height = 70 * 3 + "px";
+      this._parentElement.style.overflowY = "scroll";
+    }
   }
 }

@@ -3,6 +3,9 @@ import recipeView from "./views/recipeView.js";
 import searchView from "./views/searchView.js";
 import resultsView from "./views/resultsView.js";
 import paginationView from "./views/paginationView.js";
+import bookmarksView from "./views/bookmarksView.js";
+
+const bookmarksContainer = document.querySelector(".bookmarks-saved-container");
 
 const controlRecipes = async function () {
   const id = window.location.hash.slice(1);
@@ -29,7 +32,7 @@ const controlSearchResults = async function () {
     if (!recipeName) return;
 
     await model.loadSearchResults(recipeName);
-    resultsView._adjustHeight(model.state.search);
+    resultsView._adjustHeight(model.state.search.results);
     resultsView.render(model.getSearchResultsPage());
     paginationView._generateButtonMarkup(model.state.search);
     paginationView.addHandlerClick(controlPagination);
@@ -41,7 +44,7 @@ const controlSearchResults = async function () {
 
 const controlPagination = function (goToPage) {
   resultsView.render(model.getSearchResultsPage(goToPage));
-  resultsView._adjustHeight(model.state.search);
+  resultsView._adjustHeight(model.state.search.results);
   paginationView._generateButtonMarkup(model.state.search);
   paginationView.addHandlerClick(controlPagination);
 };
@@ -56,6 +59,7 @@ const init = function () {
   recipeView.addHandlerRender(controlRecipes);
   recipeView.renderMessage();
   searchView.addHandlerSearch(controlSearchResults);
+  bookmarksView._adjustHeight(bookmarksContainer.children, true);
 };
 init();
 
