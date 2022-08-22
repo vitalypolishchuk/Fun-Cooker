@@ -54,12 +54,25 @@ const controlServings = function (newServings) {
   recipeView.update(model.state.recipe);
 };
 
+const controlBookmark = function () {
+  if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
+  else model.removeBookmark(model.state.recipe.id);
+
+  recipeView.update(model.state.recipe);
+  renderBookmarks();
+};
+const renderBookmarks = function () {
+  bookmarksView._adjustHeight(model.state.bookmarks, true);
+  bookmarksView.render(model.state.bookmarks);
+};
+
 // ===== RECIPE PANEL ===== //
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
   recipeView.renderMessage();
+  recipeView.addHandlerAddBookmark(controlBookmark);
   searchView.addHandlerSearch(controlSearchResults);
-  bookmarksView._adjustHeight(bookmarksContainer.children, true);
+  bookmarksView.addHandlerRenderBookmarks(renderBookmarks);
 };
 init();
 

@@ -475,6 +475,9 @@ SELECTED RECIPE
 .bookmark-recipe {
   cursor: pointer;
 }
+.fill {
+  color: rgb(207, 144, 86);
+}
 @media screen and (min-width: 950px) {
   .selected-recipe-img-container {
     height: 300px;
@@ -792,9 +795,12 @@ BOOKMARKS
   left: 0;
   width: 100%;
   z-index: 10;
-  background: white;
+  background: rgb(247, 240, 202);
   transition: var(--transition);
 }
+/* .input-container {
+  background: blue;
+} */
 @media screen and (min-width: 950px) {
   .bookmarks-saved-container {
     width: 30%;
@@ -804,3 +810,6 @@ BOOKMARKS
     border-bottom-left-radius: 1rem;
   }
 }
+/* .fill-1 {
+  background: rgb(207, 144, 86);
+} */

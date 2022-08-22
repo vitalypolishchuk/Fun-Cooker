@@ -15,6 +15,14 @@ class RecipeView extends View {
     });
   }
 
+  addHandlerAddBookmark(handler) {
+    this._parentElement.addEventListener("click", function (e) {
+      const btn = e.target.closest(".fa-bookmark");
+      if (!btn) return;
+      handler();
+    });
+  }
+
   _generateMarkup() {
     return `
           <div class="selected-recipe-img-container">
@@ -33,7 +41,7 @@ class RecipeView extends View {
                 <span class="icons-small servings-btn minus" data-update-to="${this._data.servings - 1}"><i class="fa-solid fa-minus"></i></span>
                 <span class="icons-small servings-btn plus" data-update-to="${this._data.servings + 1}"><i class="fa-solid fa-plus"></i></span>
               </div>
-              <span class="bookmark-recipe"><i class="fa-solid fa-bookmark icons-small"></i></span>
+              <span class="bookmark-recipe"><i class="fa-solid fa-bookmark icons-small ${this._data.bookmarked ? "fill" : ""}"></i></span>
             </div>
           </div>
 

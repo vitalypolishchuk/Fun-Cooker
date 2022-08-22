@@ -102,8 +102,8 @@ export default class View {
     this._parentElement.style.overflowY = "hidden";
     if (!bookmarks) this._parentElement.style.height = 1000 + "px";
     else {
+      if (!children.length) this._parentElement.style.minHeight = 310 + "px";
       if (children.length <= 10) {
-        console.log("here");
         this._parentElement.style.height = 70 * children.length + "px";
       }
       if (children.length > 10) {
