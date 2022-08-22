@@ -19,6 +19,7 @@ const controlRecipes = async function () {
     await model.loadRecipe(id);
     const recipe = model.state.recipe;
     recipeView.render(model.state.recipe);
+    bookmarksView.update(model.state.bookmarks);
     recipeView.addHandlerUpdateServings(controlServings);
   } catch (err) {
     recipeView.renderError();

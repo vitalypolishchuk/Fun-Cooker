@@ -105,11 +105,12 @@ export default class View {
       if (!children.length) {
         this._parentElement.style.height = 310 + "px";
       }
-      if (children.length > 0 && children.length <= 10) {
+      if (children.length > 0 && children.length <= 3) {
         this._parentElement.style.height = 70 * children.length + "px";
       }
-      if (children.length > 10) {
-        this._parentElement.style.height = 1000 + "px";
+      if (children.length > 3) {
+        this._parentElement.style.height = 70 * 4 + "px";
+        this._parentElement.style.overflowY = "scroll";
       }
     }
   }
