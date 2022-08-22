@@ -6,7 +6,7 @@ class BookmarksView extends View {
   _message = "";
 
   _generateMarkup() {
-    return this._data.map(this._generateMarkupPreview).join("");
+    return this._data.slice().reverse().map(this._generateMarkupPreview).join("");
   }
 
   _generateMarkupPreview(recipe) {
@@ -35,6 +35,10 @@ class BookmarksView extends View {
         handler();
       }.bind(this)
     );
+  }
+
+  addHandlerRender(handler) {
+    window.addEventListener("load", handler);
   }
 }
 export default new BookmarksView();
