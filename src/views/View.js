@@ -87,13 +87,13 @@ export default class View {
 
   _adjustHeight(children, bookmarks = false) {
     if (window.innerWidth >= 950) this._adjustHeightBigScreen(children, bookmarks);
-    else this._adjustHeightSmallScreen(children);
+    else this._adjustHeightSmallScreen(children, bookmarks);
 
     window.addEventListener(
       "resize",
       function () {
         if (window.innerWidth >= 950) this._adjustHeightBigScreen(children, bookmarks);
-        else this._adjustHeightSmallScreen(children);
+        else this._adjustHeightSmallScreen(children, bookmarks);
       }.bind(this)
     );
   }
@@ -102,8 +102,10 @@ export default class View {
     this._parentElement.style.overflowY = "hidden";
     if (!bookmarks) this._parentElement.style.height = 1000 + "px";
     else {
-      if (!children.length) this._parentElement.style.minHeight = 310 + "px";
-      if (children.length <= 10) {
+      if (!children.length) {
+        this._parentElement.style.height = 310 + "px";
+      }
+      if (children.length > 0 && children.length <= 10) {
         this._parentElement.style.height = 70 * children.length + "px";
       }
       if (children.length > 10) {
@@ -112,13 +114,16 @@ export default class View {
     }
   }
 
-  _adjustHeightSmallScreen(children) {
+  _adjustHeightSmallScreen(children, bookmarks) {
     const numOfRecipes = children.length;
     if (!numOfRecipes) {
-      this._parentElement.style.minHeight = 210 + "px";
+      this._parentElement.style.height = 210 + "px";
     }
-
-    if (numOfRecipes <= 3) this._parentElement.style.height = 70 * numOfRecipes + "px";
+    if (!bookmarks) {
+      if (numOfRecipes > 0 && numOfRecipes <= 3) this._parentElement.style.height = 70 * numOfRecipes + "px";
+    } else {
+      if (numOfRecipes > 0 && numOfRecipes <= 3) this._parentElement.style.height = 210 + "px";
+    }
     if (numOfRecipes > 3) {
       this._parentElement.style.height = 70 * 3 + "px";
       this._parentElement.style.overflowY = "scroll";
