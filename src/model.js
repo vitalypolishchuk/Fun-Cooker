@@ -26,6 +26,7 @@ export const loadRecipe = async function (id) {
     state.recipe = transformData(data.data.recipe);
     if (state.bookmarks.some((bookmark) => bookmark.id === id)) state.recipe.bookmarked = true;
     else state.recipe.bookmarked = false;
+    console.log(state.recipe);
   } catch (err) {
     throw new Error(err);
   }
@@ -75,4 +76,16 @@ const init = function () {
   if (storage) state.bookmarks = JSON.parse(storage);
 };
 init();
-console.log(state.bookmarks);
+
+export const uploadRecipe = async function (newRecipe) {
+  const ingredients = Object.entries(newRecipe)
+    .filter((entry) => entry[0].startsWith("ingredient") && entry[1] !== "")
+    .map((ing) => {
+      let [quantity, unit, description] = ing[1].split(",");
+      quantity = isNaN(quantity) === false ? quantity.replaceAll(" ", "") : null;
+      unit = unit ? unit.replaceAll(" ", "") : null;
+      description = description ? description.trim() : null;
+      return { quantity: quantity ? +quantity : null, unit, description };
+    });
+  console.log(ingredients);
+};

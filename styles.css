@@ -619,7 +619,7 @@ ADD RECIPE
   margin-bottom: 1rem;
   grid-template-columns: 1fr 1fr;
 }
-.add-recipe-container-input p {
+.add-recipe-container-input label {
   font-size: 0.9rem;
   letter-spacing: 1px;
   color: var(--text-color-2);
