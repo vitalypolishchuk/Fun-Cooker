@@ -596,13 +596,27 @@ ADD RECIPE
   flex-direction: column;
   align-items: center;
 }
+.add-recipe-error-container {
+  border-radius: 1rem;
+  outline: 1px solid white;
+  outline-offset: 5px;
+  position: fixed;
+  top: 5%;
+  bottom: 5%;
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+  background: white;
+}
 .add-recipe-header {
   text-align: center;
   padding-top: 2rem;
   padding-bottom: 1rem;
   font-weight: 100;
 }
-.add-recipe-cancel {
+.add-recipe-cancel,
+.add-recipe-again {
   position: absolute;
   top: 2rem;
   right: 2rem;
@@ -610,7 +624,8 @@ ADD RECIPE
   cursor: pointer;
   transition: var(--transition);
 }
-.add-recipe-cancel:hover {
+.add-recipe-cancel:hover,
+.add-recipe-again:hover {
   color: red;
 }
 .add-recipe-container-input {
@@ -644,6 +659,8 @@ ADD RECIPE
 }
 .upload-button-container {
   padding-bottom: 2rem;
+  padding-top: 1rem;
+  text-align: center;
 }
 .new-recipe-upload span {
   font-size: 0.8rem;
@@ -652,6 +669,10 @@ ADD RECIPE
   font-size: 0.8rem;
   font-weight: 600;
   display: inline-block;
+}
+.recipe-data-container {
+  display: grid;
+  grid-template-rows: auto auto;
 }
 @media screen and (min-width: 750px) {
   .add-recipe {
@@ -663,9 +684,16 @@ ADD RECIPE
     overflow-y: hidden;
     transition: var(--transition);
   }
-  .add-recipe-inner {
-    display: flex;
-    gap: 4rem;
+  .add-recipe-error-container {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 800px;
+    height: 500px;
+  }
+  .recipe-data-container {
+    grid-template-columns: auto auto;
+    gap: 2rem;
   }
   .add-recipe-header {
     padding-bottom: 2rem;
@@ -673,9 +701,6 @@ ADD RECIPE
   .add-recipe-data,
   .add-recipe-ingredients {
     max-width: 400px;
-  }
-  .upload-button-container {
-    padding-top: 5rem;
   }
   .new-recipe-upload span {
     font-size: 1.2rem;

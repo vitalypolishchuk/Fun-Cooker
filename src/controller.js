@@ -5,6 +5,7 @@ import resultsView from "./views/resultsView.js";
 import paginationView from "./views/paginationView.js";
 import bookmarksView from "./views/bookmarksView.js";
 import addRecipeView from "./views/addRecipeView.js";
+import View from "./views/View.js";
 
 const bookmarksContainer = document.querySelector(".bookmarks-saved-container");
 
@@ -69,8 +70,17 @@ const renderBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
-const controlAddRecipe = function (newRecipe) {
-  model.uploadRecipe(newRecipe);
+const controlAddRecipe = async function (newRecipe) {
+  try {
+    addRecipeView.renderSpinner();
+    await model.uploadRecipe(newRecipe);
+    recipeView.render(model.state.recipe);
+    renderBookmarks();
+    addRecipeView._addHandlerRemoveWindow();
+  } catch (err) {
+    console.log(err);
+    addRecipeView.renderError("Wrong ingredient format! Make sure you follow the format: Quantity, Unit, Description");
+  }
 };
 
 // ===== RECIPE PANEL ===== //

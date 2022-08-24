@@ -249,113 +249,122 @@
         </section>
       </section>
 
-      <form class="add-recipe hide">
-        <div class="add-recipe-inner">
-          <span class="add-recipe-cancel"><i class="fa-solid fa-xmark"></i></span>
-          <div class="add-recipe-data">
-            <h4 class="add-recipe-header">RECIPE DATA</h4>
-            <div class="add-recipe-container-input data-container">
-              <label>Title</label>
-              <input id="title" name="title" value="q" required class="add-recipe-input" type="text" placeholder="Minimum 3 characters" />
+      <div class="add-recipe hide">
+        <span class="add-recipe-cancel"><i class="fa-solid fa-xmark"></i></span>
+        <form class="add-recipe-inner">
+          <div class="recipe-data-container">
+            <div class="add-recipe-data">
+              <h4 class="add-recipe-header">RECIPE DATA</h4>
+              <div class="add-recipe-container-input data-container">
+                <label>Title *</label>
+                <input id="title" name="title" value="TEST23" required class="add-recipe-input" type="text" placeholder="Minimum 3 characters" />
+              </div>
+              <div class="add-recipe-container-input data-container">
+                <label>URL *</label>
+                <input id="sourceUrl" name="sourceUrl" value="TEST23" required class="add-recipe-input" type="text" />
+              </div>
+              <div class="add-recipe-container-input data-container">
+                <label>Image URL *</label>
+                <input id="imageUrl" name="imageUrl" value="TEST23" required class="add-recipe-input" type="text" />
+              </div>
+              <div class="add-recipe-container-input data-container">
+                <label>Publisher *</label>
+                <input id="publisher" name="publisher" value="TEST23" required class="add-recipe-input" type="text" />
+              </div>
+              <div class="add-recipe-container-input data-container">
+                <label>Prep time *</label>
+                <input id="cookingTime" name="cookingTime" value="1" required class="add-recipe-input" type="number" />
+              </div>
+              <div class="add-recipe-container-input data-container">
+                <label>Servings *</label>
+                <input id="servings" name="servings" value="1" required class="add-recipe-input" type="number" />
+              </div>
             </div>
-            <div class="add-recipe-container-input data-container">
-              <label>URL</label>
-              <input id="sourceUrl" name="sourceUrl" value="q" required class="add-recipe-input" type="text" />
-            </div>
-            <div class="add-recipe-container-input data-container">
-              <label>Image URL</label>
-              <input id="imageUrl" name="imageUrl" value="q" required class="add-recipe-input" type="text" />
-            </div>
-            <div class="add-recipe-container-input data-container">
-              <label>Publisher</label>
-              <input id="publisher" name="publisher" value="q" required class="add-recipe-input" type="text" />
-            </div>
-            <div class="add-recipe-container-input data-container">
-              <label>Prep time</label>
-              <input id="cookingTime" name="cookingTime" value="1" required class="add-recipe-input" type="number" />
-            </div>
-            <div class="add-recipe-container-input data-container">
-              <label>Servings</label>
-              <input id="servings" name="servings" value="1" required class="add-recipe-input" type="number" />
+            <div class="add-recipe-ingredients">
+              <h4 class="add-recipe-header">INGREDIENTS</h4>
+              <div class="add-recipe-container-input ingredients-container">
+                <label>Ingredient 1</label>
+                <input
+                  id="ingredient-1"
+                  name="ingredient-1"
+                  placeholder="Quantity, Unit, Description"
+                  value="4, oz, cream cheese room"
+                  class="add-recipe-input"
+                  type="text"
+                />
+              </div>
+              <div class="add-recipe-container-input">
+                <label>Ingredient 2</label>
+                <input
+                  id="ingredient-2"
+                  name="ingredient-2"
+                  placeholder="Quantity, Unit, Description"
+                  value="4, oz, cream cheese room"
+                  class="add-recipe-input"
+                  type="text"
+                />
+              </div>
+              <div class="add-recipe-container-input">
+                <label>Ingredient 3</label>
+                <input
+                  id="ingredient-3"
+                  name="ingredient-3"
+                  placeholder="Quantity, Unit, Description"
+                  value="4, oz, cream cheese room"
+                  class="add-recipe-input"
+                  type="text"
+                />
+              </div>
+              <div class="add-recipe-container-input">
+                <label>Ingredient 4</label>
+                <input
+                  id="ingredient-4"
+                  name="ingredient-4"
+                  placeholder="Quantity, Unit, Description"
+                  value="4, oz, cream cheese room"
+                  class="add-recipe-input"
+                  type="text"
+                />
+              </div>
+              <div class="add-recipe-container-input">
+                <label>Ingredient 5</label>
+                <input
+                  id="ingredient-5"
+                  name="ingredient-5"
+                  placeholder="Quantity, Unit, Description"
+                  value="4, oz, cream cheese room"
+                  class="add-recipe-input"
+                  type="text"
+                />
+              </div>
+              <div class="add-recipe-container-input">
+                <label>Ingredient 6</label>
+                <input
+                  id="ingredient-6"
+                  name="ingredient-6"
+                  placeholder="Quantity, Unit, Description"
+                  value="4, oz, cream cheese room"
+                  class="add-recipe-input"
+                  type="text"
+                />
+              </div>
             </div>
           </div>
-          <div class="add-recipe-ingredients">
-            <h4 class="add-recipe-header">INGREDIENTS</h4>
-            <div class="add-recipe-container-input ingredients-container">
-              <label>Ingredient 1</label>
-              <input
-                id="ingredient-1"
-                name="ingredient-1"
-                placeholder="Quantity, Unit, Description"
-                value="4, oz, cream cheese room"
-                class="add-recipe-input"
-                type="text"
-              />
-            </div>
-            <div class="add-recipe-container-input">
-              <label>Ingredient 2</label>
-              <input
-                id="ingredient-2"
-                name="ingredient-2"
-                placeholder="Quantity, Unit, Description"
-                value="4, oz, cream cheese room"
-                class="add-recipe-input"
-                type="text"
-              />
-            </div>
-            <div class="add-recipe-container-input">
-              <label>Ingredient 3</label>
-              <input
-                id="ingredient-3"
-                name="ingredient-3"
-                placeholder="Quantity, Unit, Description"
-                value="4, oz, cream cheese room"
-                class="add-recipe-input"
-                type="text"
-              />
-            </div>
-            <div class="add-recipe-container-input">
-              <label>Ingredient 4</label>
-              <input
-                id="ingredient-4"
-                name="ingredient-4"
-                placeholder="Quantity, Unit, Description"
-                value="4, oz, cream cheese room"
-                class="add-recipe-input"
-                type="text"
-              />
-            </div>
-            <div class="add-recipe-container-input">
-              <label>Ingredient 5</label>
-              <input
-                id="ingredient-5"
-                name="ingredient-5"
-                placeholder="Quantity, Unit, Description"
-                value="4, oz, cream cheese room"
-                class="add-recipe-input"
-                type="text"
-              />
-            </div>
-            <div class="add-recipe-container-input">
-              <label>Ingredient 6</label>
-              <input
-                id="ingredient-6"
-                name="ingredient-6"
-                placeholder="Quantity, Unit, Description"
-                value="4, oz, cream cheese room"
-                class="add-recipe-input"
-                type="text"
-              />
-            </div>
+          <div class="upload-button-container">
+            <button class="btn new-recipe-upload">
+              <span><i class="fa-solid fa-cloud-arrow-up"></i></span>
+              <p>UPLOAD</p>
+            </button>
           </div>
+        </form>
+      </div>
+      <div class="add-recipe-error-container hide">
+        <span class="add-recipe-again"><i class="fa-solid fa-xmark"></i></span>
+        <div class="error">
+          <span class="error-icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+          <p>msg</p>
         </div>
-        <div class="upload-button-container">
-          <button class="btn new-recipe-upload">
-            <span><i class="fa-solid fa-cloud-arrow-up"></i></span>
-            <p>UPLOAD</p>
-          </button>
-        </div>
-      </form>
+      </div>
       <div class="overflow hide"></div>
     </div>
   </body>

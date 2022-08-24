@@ -29,7 +29,9 @@ export default class View {
         }
       }
       if (!newEl.isEqualNode(curElements[i])) {
-        Array.from(newEl.attributes).forEach((attr) => curElements[i].setAttribute(attr.name, attr.value));
+        Array.from(newEl.attributes).forEach((attr) => {
+          curElements[i].setAttribute(attr.name, attr.value);
+        });
       }
     });
   }

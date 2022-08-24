@@ -10,11 +10,13 @@ export const state = {
   },
   bookmarks: [],
 };
+
 const transformData = function (object) {
   const newObj = Object.assign({}, object);
   if (object.cooking_time) Object.assign(newObj, { cookingTime: object.cooking_time });
   if (object.source_url) Object.assign(newObj, { sourceUrl: object.source_url });
   if (object.image_url) Object.assign(newObj, { imageUrl: object.image_url });
+  if (object.key) Object.assign(newObj, { key: object.key });
   delete newObj.cooking_time;
   delete newObj.source_url;
   delete newObj.image_url;
@@ -26,7 +28,6 @@ export const loadRecipe = async function (id) {
     state.recipe = transformData(data.data.recipe);
     if (state.bookmarks.some((bookmark) => bookmark.id === id)) state.recipe.bookmarked = true;
     else state.recipe.bookmarked = false;
-    console.log(state.recipe);
   } catch (err) {
     throw new Error(err);
   }
@@ -78,14 +79,30 @@ const init = function () {
 init();
 
 export const uploadRecipe = async function (newRecipe) {
-  const ingredients = Object.entries(newRecipe)
-    .filter((entry) => entry[0].startsWith("ingredient") && entry[1] !== "")
-    .map((ing) => {
-      let [quantity, unit, description] = ing[1].split(",");
-      quantity = isNaN(quantity) === false ? quantity.replaceAll(" ", "") : null;
-      unit = unit ? unit.replaceAll(" ", "") : null;
-      description = description ? description.trim() : null;
-      return { quantity: quantity ? +quantity : null, unit, description };
-    });
-  console.log(ingredients);
+  try {
+    const ingredients = Object.entries(newRecipe)
+      .filter((entry) => entry[0].startsWith("ingredient") && entry[1] !== "")
+      .map((ing) => {
+        let [quantity, unit, description] = ing[1].split(",");
+        if (isNaN(quantity) === true) throw new Error();
+        quantity = quantity.replaceAll(" ", "");
+        unit = unit.replaceAll(" ", "");
+        description = description.trim();
+        return { quantity: quantity ? +quantity : null, unit, description };
+      });
+    const recipe = {
+      title: newRecipe.title,
+      source_url: newRecipe.sourceUrl,
+      image_url: newRecipe.imageUrl,
+      publisher: newRecipe.publisher,
+      cooking_time: +newRecipe.cookingTime,
+      servings: +newRecipe.servings,
+      ingredients,
+    };
+    let data = await helpers.sendJSON(`${config.API_URL}?key=${config.API_KEY}`, recipe);
+    state.recipe = transformData(data.data.recipe);
+    addBookmark(state.recipe);
+  } catch (err) {
+    throw err;
+  }
 };
