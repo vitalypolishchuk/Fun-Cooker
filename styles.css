@@ -5,8 +5,8 @@ VARIABLES
 ======================== */
 :root {
   --transition: 0.3s all;
-  --background-main: rgba(255, 243, 182, 0.4);
-  --background-main-dark: rgba(236, 225, 174, 0.4);
+  --background-main: rgb(255 250 226);
+  --background-main-dark: rgb(247 240 206);
   --text-color-1: rgb(255, 174, 98);
   --text-color-2: rgb(120, 118, 118);
   --icons-clr: rgb(255, 174, 98);
@@ -154,7 +154,6 @@ button {
     background-attachment: fixed;
   }
   .app-container {
-    background: white;
     max-width: 1200px;
     margin: 5rem auto;
     margin-top: 5rem;
@@ -293,6 +292,8 @@ NAVIGATION
 @media screen and (min-width: 950px) {
   .nav {
     height: 100px;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
   }
   .nav-container {
     grid-template-areas: "a b c d";
@@ -514,6 +515,8 @@ SELECTED RECIPE
 
 @media screen and (min-width: 950px) {
   .main-section {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
     display: grid;
     grid-template-columns: 1fr 5fr;
     min-height: 1000px;
@@ -587,7 +590,6 @@ ADD RECIPE
 ======================== */
 .add-recipe {
   border-radius: 1rem;
-  outline: 1px solid white;
   outline-offset: 5px;
   position: fixed;
   top: 5%;
@@ -605,7 +607,6 @@ ADD RECIPE
 }
 .add-recipe-error-container {
   border-radius: 1rem;
-  outline: 1px solid white;
   outline-offset: 5px;
   position: fixed;
   top: 5%;
@@ -644,7 +645,7 @@ ADD RECIPE
 .add-recipe-container-input label {
   font-size: 0.9rem;
   letter-spacing: 1px;
-  color: var(--text-color-2);
+  color: var(--text-color-1);
 }
 .add-recipe-input {
   border: 1px solid rgba(0, 0, 0, 0.2);

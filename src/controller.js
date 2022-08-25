@@ -72,14 +72,15 @@ const renderBookmarks = function () {
 
 const controlAddRecipe = async function (newRecipe) {
   try {
+    if (newRecipe.title.length < 3) return addRecipeView.renderError("Title should be more than 3 characters");
     await model.uploadRecipe(newRecipe);
     recipeView.render(model.state.recipe);
     renderBookmarks();
     window.history.pushState(null, "", `#${model.state.recipe.id}`);
     // window.location.hash = model.state.recipe.id;
+    addRecipeView.removeValues();
     addRecipeView._addHandlerRemoveWindow();
   } catch (err) {
-    console.log(err);
     addRecipeView.renderError("Wrong ingredient format! Make sure you follow the format: Quantity, Unit, Description");
   }
 };

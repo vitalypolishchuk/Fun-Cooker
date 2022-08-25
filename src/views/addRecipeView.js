@@ -62,6 +62,10 @@ class BookmarksView extends View {
     const msg = this._addRecipeErrorContainer.querySelector("p");
     msg.textContent = message;
   }
+  removeValues() {
+    const inputs = this._parentElement.querySelectorAll("input");
+    inputs.forEach((inp) => (inp.value = ""));
+  }
 
   _generateMarkup() {}
 }
