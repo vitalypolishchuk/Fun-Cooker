@@ -24,7 +24,7 @@ const transformData = function (object) {
 };
 export const loadRecipe = async function (id) {
   try {
-    const data = await helpers.getJSON(`${config.API_URL}/${id}`);
+    const data = await helpers.getJSON(`${config.API_URL}/${id}?key=${config.API_KEY}`);
     state.recipe = transformData(data.data.recipe);
     if (state.bookmarks.some((bookmark) => bookmark.id === id)) state.recipe.bookmarked = true;
     else state.recipe.bookmarked = false;
@@ -35,7 +35,7 @@ export const loadRecipe = async function (id) {
 export const loadSearchResults = async function (search) {
   try {
     state.search.name = search;
-    const data = await helpers.getJSON(`${config.API_URL}?search=${search}`);
+    const data = await helpers.getJSON(`${config.API_URL}?search=${search}&key=${config.API_KEY}`);
     const recipes = data.data.recipes;
     state.search.results = recipes.map((recipe) => transformData(recipe));
     state.search.page = 1;

@@ -72,10 +72,11 @@ const renderBookmarks = function () {
 
 const controlAddRecipe = async function (newRecipe) {
   try {
-    addRecipeView.renderSpinner();
     await model.uploadRecipe(newRecipe);
     recipeView.render(model.state.recipe);
     renderBookmarks();
+    window.history.pushState(null, "", `#${model.state.recipe.id}`);
+    // window.location.hash = model.state.recipe.id;
     addRecipeView._addHandlerRemoveWindow();
   } catch (err) {
     console.log(err);

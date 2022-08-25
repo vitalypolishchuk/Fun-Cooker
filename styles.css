@@ -397,6 +397,13 @@ PANEL OF RECIPES
   font-size: 0.7rem;
   color: var(--text-color-2);
 }
+.saved-bookmark-icon {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  color: var(--text-color-1);
+  font-size: 1.3rem;
+}
 .btn-container {
   width: 90%;
   text-align: right;

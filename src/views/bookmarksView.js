@@ -21,6 +21,7 @@ class BookmarksView extends View {
                   <h6 class="recipe-name">${recipe.title}</h6>
                   <p class="recipe-place">${recipe.publisher}</p>
                 </div>
+                <span class="saved-bookmark-icon ${recipe.key ? "" : "none"}"><i class="fa-solid fa-user"></i></span>
               </div>
             </div></a>
     `;
