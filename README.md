@@ -8,7 +8,7 @@ Fun-Cooker using Vanilla JS, the code was bundled with Parcel
 
 ## Demo
 
-![](https://github.com/vitalypolishchuk/bankist-page/blob/master/other/demo.gif)
+![](https://github.com/vitalypolishchuk/Fun-Cooker/blob/master/other/demo.gif)
 
 ## Link to the website
 
