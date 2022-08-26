@@ -30,10 +30,10 @@ const controlRecipes = async function () {
 };
 const controlSearchResults = async function () {
   try {
-    resultsView.renderSpinner();
-
     const recipeName = searchView._getSearchInput();
     if (!recipeName) return;
+
+    resultsView.renderSpinner();
 
     await model.loadSearchResults(recipeName);
     resultsView._adjustHeight(model.state.search.results);
